@@ -26,27 +26,20 @@
         {
             if(dish !=null)
             {
-                return
-                (
-                    <Card>
-                            <CardImg width="100%" src={dish.image} alt={dish.name} />  
-                    
-                    <CardBody>
-                            <CardTitle heading>{dish.name}</CardTitle>
-                            <CardText>{dish.description}</CardText>
-                    </CardBody>
-                    </Card>
-                );
-            }//end if
-            else
-            {
-                return
-                (
-                        <div>
-
+                
+                    return(
+                        <div >
+                                <Card>
+                                    <CardImg width="100%" src={dish.image} alt={dish.name} />                                        
+                                    <CardBody body className="ml-5">
+                                            <CardTitle heading>{dish.name}</CardTitle> 
+                                            <CardText>{dish.description}</CardText>                                           
+                                    </CardBody>
+                                </Card>
                         </div>
-                );
-            } //end else
+                    );
+            
+            }//end if           
 
         }//end renderDish
 
@@ -64,7 +57,7 @@
                                 <Card onClick={()=>this.onDishSelect(dish)}>
                                     <CardImg width="100%" src={dish.image} alt={dish.name} />                                        
                                     <CardImgOverlay body className="ml-5">
-                                            <CardTitle heading>{dish.name}</CardTitle>                                            
+                                            <CardTitle>{dish.name}</CardTitle>                                            
                                     </CardImgOverlay>
                                 </Card>
                         </div>
@@ -78,8 +71,9 @@
                                   {menu}
                             </div>
 
+                              
                             <div className="row">
-                                {this.renderDish(this.state.selectedDish)}
+                            {this.renderDish(this.state.selectedDish)}   
                             </div>
                         </div>
                   );
