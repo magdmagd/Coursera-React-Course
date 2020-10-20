@@ -77,7 +77,19 @@ class DishdetailComponent  extends Component
                 )
             }//end else
         }//end big if
-        }//end  RenderComments
+    }//end  RenderComments
+
+    componentDidMount()
+        {
+            console.log('DishDetailed Component DidMount is invoked');
+        }//end componentDidMount()
+
+    componentDidUpdate()    
+    {
+        console.log('DishDetailed Component DidUpdate is invoked');
+    }
+
+
 
     render() 
     { 
@@ -98,6 +110,8 @@ class DishdetailComponent  extends Component
      );
 
     }//end render
+
+    
 }//end class
  
 export default DishdetailComponent ;
