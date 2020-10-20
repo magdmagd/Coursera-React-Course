@@ -55,7 +55,8 @@
 
         render() 
         { 
-            //const menu = this.state.dishes.map((dish)=>{
+            //const menu = this.state.dishes.map((dish)=>{ // when update Excersise
+            //onClick={()=>this.onDishSelect(dish)    // when update Main Contaner
                 const menu = this.props.dishes.map((dish)=>{
                     return(
                         <div key={dish.id} className="col-12 col-md-5 m-1">
@@ -76,14 +77,15 @@
                                   {menu}
                             </div>
 
-                               
-                            <Detail dish={this.state.selectedDish}/>
+                            <Detail dish={this.state.selectedDish}/>      
+                           
                               
                         </div>
                   );
         }//end render
     }//end class
 /*
+ 
     <div className="row">
     {this.renderDish(this.state.selectedDish)}   
     </div>

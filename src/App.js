@@ -1,12 +1,24 @@
 import React , {Component} from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import {Navbar, NavbarBrand} from 'reactstrap';
-import './App.css';
+//import './App.css';
 import Menu from './components/MenuComponent';
 import { DISHES } from './shared/dishes';
+import MainComp from './components/MainComponent';
 
 class App extends Component {
   
+
+  render() 
+  { 
+    return ( 
+          <div>
+             <MainComp />
+          </div>
+      );
+
+    }//end Render  
+  /*
   state = {  }
 
   constructor(props)
@@ -32,6 +44,7 @@ class App extends Component {
      </div>
      );
   }//end render
+*/
 }//end class
  
 export default App;
