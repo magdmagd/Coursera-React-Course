@@ -4,6 +4,7 @@ import {Navbar, NavbarBrand} from 'reactstrap';
 //import DishDetail from './DishdetailComponent';
 import Menu from '../Functional/MenuComponent';
 import DishDetail from '../Functional/DishdetailComponent';
+import Header from './HeaderComponent';
 import { DISHES } from '../shared/dishes';
 
 class MainComponent extends Component {
@@ -30,11 +31,7 @@ class MainComponent extends Component {
   { 
     return ( 
       <div className="App">      
-        <Navbar dark color="primary">
-        <div className="container">
-          <NavbarBrand href="/">Ristorante Confusion</NavbarBrand>
-        </div>
-       </Navbar>
+        <Header/>        
        <Menu dishes={this.state.dishes}
          onClick={(dishId)=>this.onDishSelect(dishId)}/>
       <DishDetail dish={this.state.selectedDish}/>
@@ -44,5 +41,12 @@ class MainComponent extends Component {
 }//end class 
  //<DishDetail />
  //      <DishDetail dish={this.state.dishes.filter((dish)=>dish.id===this.selectedDish)[0]}/>
+ /**
+  * <Navbar dark color="primary">
+        <div className="container">
+          <NavbarBrand href="/">Ristorante Confusion</NavbarBrand>
+        </div>
+       </Navbar>
+  */
 export default MainComponent;
 
