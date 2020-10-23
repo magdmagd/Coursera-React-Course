@@ -5,6 +5,7 @@ import {Navbar, NavbarBrand} from 'reactstrap';
 import Menu from '../Functional/MenuComponent';
 import DishDetail from '../Functional/DishdetailComponent';
 import Header from './HeaderComponent';
+import Footer from './FooterComponent';
 import { DISHES } from '../shared/dishes';
 
 class MainComponent extends Component {
@@ -35,6 +36,7 @@ class MainComponent extends Component {
        <Menu dishes={this.state.dishes}
          onClick={(dishId)=>this.onDishSelect(dishId)}/>
       <DishDetail dish={this.state.selectedDish}/>
+      <Footer/>
      </div>
      );
   }//end render
