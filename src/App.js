@@ -5,6 +5,8 @@ import './App.css';
 import Menu from './components/MenuComponent';
 import { DISHES } from './shared/dishes';
 import MainComp from './components/MainComponent';
+import { BrowserRouter } from 'react-router-dom';
+
 
 class App extends Component {
   
@@ -12,9 +14,11 @@ class App extends Component {
   render() 
   { 
     return ( 
+        <BrowserRouter>
           <div>
              <MainComp />
           </div>
+        </BrowserRouter> 
       );
 
     }//end Render  
