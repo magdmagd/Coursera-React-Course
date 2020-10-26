@@ -3,13 +3,17 @@ import {Navbar, NavbarBrand} from 'reactstrap';
 import Menu from './MenuComponent';
 //import DishDetail from './DishdetailComponent';
 //import Menu from '../Functional/MenuComponent';
+import Contact from '../Functional/ContactComponent';
 import DishDetail from '../Functional/DishdetailComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from '../Functional/HomeComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { DISHES } from '../shared/dishes';
-
+import { DISHES2 } from '../shared/dishes2';
+import { COMMENTS } from './../shared/comments';
+import { PROMOTIONS } from './../shared/promotions';
+import { LEADERS } from './../shared/leaders';
 class MainComponent extends Component {
   
   state = {  }
@@ -20,6 +24,10 @@ class MainComponent extends Component {
 
     this.state= {
       dishes:DISHES,
+      dishes2:DISHES2 ,
+      comments:COMMENTS ,
+      leaders : LEADERS ,
+      promotions : PROMOTIONS,
       selectedDish:null
     }
   }//end constructor
@@ -35,7 +43,10 @@ class MainComponent extends Component {
 
     const HomePage = () => {
       return(
-          <Home />
+          <Home 
+          dish={this.state.dishes2.filter((dish2) => dish2.featured)[0]}
+          promotion={this.state.promotions.filter((promo) => promo.featured)[0]}
+          leader={this.state.leaders.filter((leader) => leader.featured)[0]} />
       );
     }//end Home Page 
 
@@ -46,6 +57,7 @@ class MainComponent extends Component {
               <Route path='/home' component={HomePage} />
               <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes}
                                         onClick={(dishId)=>this.onDishSelect(dishId)}/>} />
+              <Route exact path='/contactus' component={Contact} />                                        
               <Redirect to="/home" />
           </Switch>
       <Footer/>
