@@ -1,9 +1,25 @@
 import React from 'react';
+import { Breadcrumb ,BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
+
+
+
 
 function Contact(props) 
 {
     return(
         <div className="container">
+             <div className="row">
+             <Breadcrumb>
+                                            <BreadcrumbItem><Link to ='/home'> Home  </Link> </BreadcrumbItem>                                           
+                                            <BreadcrumbItem><Link to ='/menu'> Menu  </Link> </BreadcrumbItem>
+                                            <BreadcrumbItem active>  </BreadcrumbItem>
+                                 </Breadcrumb>
+                                         <div className="col-12">
+                                           <h3>{props.dish.name}</h3>
+                                           <hr/>
+                                         </div>
+             </div>
             <div className="row row-content">
                 <div className="col-12">
                 <h3>Location Information</h3>
@@ -35,3 +51,18 @@ function Contact(props)
 }//end function 
 
 export default Contact;
+
+/**
+ * <div className="row">
+                                 
+                                 <Breadcrumb>
+                                            <BreadcrumbItem><Link to ='/home'> Home  </Link> </BreadcrumbItem>                                           
+                                            <BreadcrumbItem><Link to ='/menu'> Menu  </Link> </BreadcrumbItem>
+                                            <BreadcrumbItem active>  </BreadcrumbItem>
+                                 </Breadcrumb>
+                                         <div className="col-12">
+                                           <h3>{props.dish.name}</h3>
+                                           <hr/>
+                                         </div>
+               </div>
+ */

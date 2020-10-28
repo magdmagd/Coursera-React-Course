@@ -1,10 +1,9 @@
 import React , {Component} from 'react';
 import {Navbar, NavbarBrand} from 'reactstrap';
-import Menu from './MenuComponent';
+//import Menu from './MenuComponent';
 //import DishDetail from './DishdetailComponent';
-//import Menu from '../Functional/MenuComponent';
+import Menu from '../Functional/MenuComponent';
 import Contact from '../Functional/ContactComponent';
-import DishDetail from '../Functional/DishdetailComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from '../Functional/HomeComponent';
@@ -14,6 +13,7 @@ import { DISHES2 } from '../shared/dishes2';
 import { COMMENTS } from './../shared/comments';
 import { PROMOTIONS } from './../shared/promotions';
 import { LEADERS } from './../shared/leaders';
+import Dishdetail from '../Functional/DishdetailComponent';
 class MainComponent extends Component {
   
   state = {  }
@@ -40,8 +40,8 @@ class MainComponent extends Component {
 
   render() 
   { 
-
-    const HomePage = () => {
+    const HomePage = () => 
+    {
       return(
           <Home 
           dish={this.state.dishes2.filter((dish2) => dish2.featured)[0]}
@@ -50,13 +50,27 @@ class MainComponent extends Component {
       );
     }//end Home Page 
 
-    return ( 
+    const DishWithId = ({match})=>
+     {
+      return(
+
+      <Dishdetail  dish={this.state.dishes2.filter((dish2) => match.params.dishId)[0]}
+                   comments ={this.state.comments.filter((comment)=>match.params.dishId)}
+      />
+      );//end return 
+     } 
+
+    
+    
+
+     return ( 
       <div className="App">      
         <Header/>                  
         <Switch>
               <Route path='/home' component={HomePage} />
               <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes}
-                                        onClick={(dishId)=>this.onDishSelect(dishId)}/>} />
+                                        onClick={(dishId)=>this.onDishSelect(dishId)}/>} /> 
+              <Route path="/menu/:dishId" component={DishWithId}/>                                                     
               <Route exact path='/contactus' component={Contact} />                                        
               <Redirect to="/home" />
           </Switch>
@@ -82,7 +96,14 @@ class MainComponent extends Component {
    *    <Menu dishes={this.state.dishes}
          onClick={(dishId)=>this.onDishSelect(dishId)}/>
       <DishDetail dish={this.state.selectedDish}/>
-   * 
-   */
+   * //dish={this.state.dishes2.filter((dish2)=>dish2.Id===parseInt(match.params.dishId,10))[10]}
+   *///comment.dishId===parseInt(match.params.dishId,10))
+
+   /**
+    * 
+
+        
+    * 
+    */
 export default MainComponent;
 
