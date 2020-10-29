@@ -7,13 +7,15 @@ import Contact from '../Functional/ContactComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from '../Functional/HomeComponent';
+import Dishdetail from '../Functional/DishdetailComponent';
+import About    from '../Functional/AboutComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { DISHES } from '../shared/dishes';
 import { DISHES2 } from '../shared/dishes2';
 import { COMMENTS } from './../shared/comments';
 import { PROMOTIONS } from './../shared/promotions';
 import { LEADERS } from './../shared/leaders';
-import Dishdetail from '../Functional/DishdetailComponent';
+
 class MainComponent extends Component {
   
   state = {  }
@@ -58,7 +60,7 @@ class MainComponent extends Component {
                    comments ={this.state.comments.filter((comment)=>match.params.dishId)}
       />
       );//end return 
-     } 
+     } //end DishWithId
 
     
     
@@ -72,6 +74,7 @@ class MainComponent extends Component {
                                         onClick={(dishId)=>this.onDishSelect(dishId)}/>} /> 
               <Route path="/menu/:dishId" component={DishWithId}/>                                                     
               <Route exact path='/contactus' component={Contact} />                                        
+              <Route exact path='/aboutus'  component={ () => <About leaders={this.state.leaders}/>} />
               <Redirect to="/home" />
           </Switch>
       <Footer/>

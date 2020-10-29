@@ -16,7 +16,7 @@ function Contact(props)
                                             <BreadcrumbItem active>  </BreadcrumbItem>
                                  </Breadcrumb>
                                          <div className="col-12">
-                                           <h3>{props.dish.name}</h3>
+                                           <h3></h3>
                                            <hr/>
                                          </div>
              </div>
