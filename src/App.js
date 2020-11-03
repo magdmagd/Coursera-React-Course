@@ -1,12 +1,17 @@
 import React , {Component} from 'react';
 //import logo from './logo.svg';
 import {Navbar, NavbarBrand} from 'reactstrap';
+import { Provider } from 'react-redux';
+
 import './App.css';
 import Menu from './components/MenuComponent';
 import { DISHES } from './shared/dishes';
 import MainComp from './components/MainComponent';
 import { BrowserRouter } from 'react-router-dom';
+import { ConfigureStore } from './redux/configureStore';
 
+
+const store = ConfigureStore();
 
 class App extends Component {
   
@@ -14,11 +19,15 @@ class App extends Component {
   render() 
   { 
     return ( 
+    
+      <Provider store={store}>
         <BrowserRouter>
           <div>
              <MainComp />
           </div>
         </BrowserRouter> 
+       </Provider>
+   
       );
 
     }//end Render  
