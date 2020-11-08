@@ -39,7 +39,7 @@ class DishdetailComponent  extends Component
         }//end renderDish(dish) 
         
         
-         RenderComments(dish)
+         /*RenderComments(dish)  --> Update Render Comments 
          {
             // console.log(comments)
         if(dish !=null )                
@@ -77,7 +77,10 @@ class DishdetailComponent  extends Component
                 )
             }//end else
         }//end big if
-    }//end  RenderComments
+    }//end  RenderComments*/ 
+
+
+    
 
     componentDidMount()
         {

@@ -4,6 +4,7 @@ import {Card,CardBody,CardText,CardImg,CardImgOverlay, CardTitle , Breadcrumb,Br
 import { Link } from 'react-router-dom';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { addComment } from './../redux/ActionCreators';
 
 
 
@@ -79,7 +80,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 
 
 
-    function RenderComments({comments})
+    function RenderComments({comments , dish , addComment})
          {
             
              console.log(comments)          
@@ -108,7 +109,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
                                     {list}
                                </Stagger>     
                             </ul>   
-                            <CommentForm />                         
+                            <CommentForm dishId={dish} addComment={addComment} />                         
                         </div>
                 )
             //}//end if            
@@ -145,7 +146,8 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
        </div>   
      <div className="row">
         <RenderDish dish={props.dish}/>
-        <RenderComments comments={props.comments} />
+        <RenderComments comments={props.comments} 
+           addComment={props.addComment}  dishId={props.dish.id}  />
     </div> 
  </div>      
 
@@ -192,7 +194,7 @@ export class CommentForm extends Component {
     handleSubmit(values) 
     {
         this.toggleModal();
-        //this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }//end handleSubmit()
 
 
@@ -213,11 +215,11 @@ export class CommentForm extends Component {
 
                         <ModalBody>
                             <div className="col-12 col-md-9">
-                                <LocalForm>
+                                <LocalForm onSubmit={(values)=>this.handleSubmit(values)}>
                                     <Row className="form-group">
                                         <Label htmlFor="rating" md={5}>Rating</Label>
                                         <Col md={10}>
-                                            <Control.select model=".rating" name="rating" className="form-control" >
+                                            <Control.select model=".rating" id="rating" name="rating" className="form-control" >
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -242,7 +244,9 @@ export class CommentForm extends Component {
                                         </Col>
                                     </Row>
 
-                                    <Button type="submit" value="submit" color="primary">Submit</Button>
+                                    <Button type="submit" value="submit" color="primary"  >
+                                        Submit
+                                    </Button>
 
                                 </LocalForm>
 
