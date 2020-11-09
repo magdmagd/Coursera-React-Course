@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { addComment } from './../redux/ActionCreators';
+import { Loading } from './LoadingComponent';
 
 
 
@@ -128,7 +129,26 @@ import { addComment } from './../redux/ActionCreators';
     const Dishdetail = (props)=>
     {
       // const dish = props.dish ;       
-               
+      if (props.isLoading) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    else if (props.errMess) {
+        return(
+            <div className="container">
+                <div className="row">            
+                    <h4>{props.errMess}</h4>
+                </div>
+            </div>
+        );
+    }
+    else
+    {
     return (       
     <div  className="container"> 
      <div className="row">
@@ -152,6 +172,8 @@ import { addComment } from './../redux/ActionCreators';
  </div>      
 
      );//end return
+
+    }           
 
     }//end DishDetail
 

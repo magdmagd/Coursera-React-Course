@@ -11,7 +11,7 @@ import Footer from './FooterComponent';
 import Home from '../Functional/HomeComponent';
 import Dishdetail from '../Functional/DishdetailComponent';
 import About    from '../Functional/AboutComponent';
-import { addComment } from '../redux/ActionCreators';
+import { addComment ,fetchDishes } from '../redux/ActionCreators';
 import { Switch, Route, Redirect,withRouter } from 'react-router-dom';
 import { DISHES } from '../shared/dishes';
 import { DISHES2 } from '../shared/dishes2';
@@ -33,9 +33,10 @@ const mapStateToProps = state =>
 
 const mapDispatchToProps = dispatch => ({
   
-  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment))
-
+  addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+  fetchDishes: () => { dispatch(fetchDishes())}
 });//end mapDispatchToProps
+
 
 
 
@@ -57,6 +58,11 @@ class MainComponent extends Component {
     }
   }//end constructor
 
+  componentDidMount() 
+  {
+    this.props.fetchDishes();
+  }//end
+
   onDishSelect(dishId)
         {
             this.setState({selectedDish:dishId});
@@ -74,6 +80,8 @@ class MainComponent extends Component {
           leader={this.state.leaders.filter((leader) => leader.featured)[0]} />*/
           <Home 
           dish={this.props.dishes2.filter((dish2) => dish2.featured)[0]}
+          dishesLoading={this.props.dishes.isLoading}
+          dishesErrMess={this.props.dishes.errMess}
           promotion={this.props.promotions.filter((promo) => promo.featured)[0]}
           leader={this.props.leaders.filter((leader) => leader.featured)[0]} />
       );
@@ -100,7 +108,7 @@ class MainComponent extends Component {
         <Header/>                  
         <Switch>
               <Route path='/home' component={HomePage} />
-              <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes}
+              <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes.dishes}
                                         onClick={(dishId)=>this.onDishSelect(dishId)}/>} /> 
               <Route path="/menu/:dishId" component={DishWithId}/>                                                     
               <Route exact path='/contactus' component={Contact} />                                        

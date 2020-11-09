@@ -2,6 +2,7 @@
     import { Card,CardBody,CardText,CardImg,CardImgOverlay, CardTitle,Breadcrumb,BreadcrumbItem} from 'reactstrap';
     import {Link} from 'react-router-dom';
     import Detail from './DishdetailComponent';
+    import { Loading } from './LoadingComponent';
     
 
 
@@ -40,6 +41,27 @@
            {
                 const menu = props.dishes.map((dish)=>
                 {
+                  if (props.dishes.isLoading) {
+                        return(
+                            <div className="container">
+                                <div className="row">            
+                                    <Loading />
+                                </div>
+                            </div>
+                        );
+                    }
+                    else if (props.dishes.errMess) {
+                        return(
+                            <div className="container">
+                                <div className="row"> 
+                                    <div className="col-12">
+                                        <h4>{props.dishes.errMess}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    }
+                    else                    
                     
                     return(
                         <div key={dish.id} className="col-12 col-md-5 m-1">
@@ -69,8 +91,8 @@
                                             
                         </div>
                   );
-        
-            }//end const Menu =(props)
+            
+              }//end const Menu =(props)
 
              // <Detail dish={this.state.selectedDish}/>
     export default Menu;
