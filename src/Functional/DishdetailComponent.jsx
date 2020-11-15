@@ -6,6 +6,7 @@ import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { addComment } from './../redux/ActionCreators';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 
 
@@ -17,7 +18,7 @@ import { Loading } from './LoadingComponent';
                     return(
                         <div key={dish.id} className="col-12 col-md-5 m-1">
                                 <Card>
-                                    <CardImg width="100%" src={dish.image} alt={dish.name} />                                        
+                                    <CardImg width="100%" src={baseUrl+dish.image} alt={dish.name} />                                        
                                     <CardBody body className="ml-5">
                                             <CardTitle heading>{dish.name}</CardTitle> 
                                             <CardText>{dish.description}</CardText>                                           
