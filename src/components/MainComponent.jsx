@@ -19,6 +19,7 @@ import { PROMOTIONS } from './../shared/promotions';
 import { LEADERS } from './../shared/leaders';
 import { actions } from 'react-redux-form';
 import { postComment,addComment, fetchDishes, fetchComments, fetchPromos } from '../redux/ActionCreators';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 
 const mapStateToProps = state => 
@@ -122,7 +123,10 @@ class MainComponent extends Component {
 
      return ( 
       <div className="App">      
-        <Header/>                  
+        <Header/>  
+        
+        <TransitionGroup>
+            <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>                
         <Switch>
               <Route path='/home' component={HomePage} />
               <Route exact path='/menu' component={() => <Menu dishes={this.props.dishes.dishes}
@@ -132,6 +136,9 @@ class MainComponent extends Component {
               <Route exact path='/aboutus'  component={ () => <About leaders={this.props.leaders}/>} />
               <Redirect to="/home" />
           </Switch>
+        </CSSTransition>
+      </TransitionGroup>
+          
       <Footer/>
      </div>
      );
