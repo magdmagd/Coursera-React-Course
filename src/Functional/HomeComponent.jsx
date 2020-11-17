@@ -3,6 +3,7 @@ import { Card,CardBody,CardText,CardImg,CardImgOverlay, CardTitle, CardSubtitle}
 import { baseUrl } from '../shared/baseUrl';
 import { Loading } from './LoadingComponent';
 import { promosLoading } from './../redux/ActionCreators';
+import { FadeTransform } from 'react-animation-components';
 
 function RenderCard({item , isLoading, errMess})
 {
@@ -21,6 +22,11 @@ else
 {
   return(
 
+    <FadeTransform
+    in
+    transformProps={{
+        exitTransform: 'scale(0.5) translateY(-50%)'
+    }}>
     <Card >
     <CardImg width="100%" src={baseUrl+item.image} alt={item.name} />                                        
     <CardBody body className="ml-5">
@@ -29,7 +35,7 @@ else
            <CardText>{item.description}</CardText>                                          
    </CardBody>
   </Card>
-
+  </FadeTransform>
   );
  }//end else
 }//end RenderCard()

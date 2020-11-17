@@ -10,6 +10,7 @@ import { baseUrl } from '../shared/baseUrl';
 
 
 
+
         
     function RenderDish({dish})
         {
@@ -17,6 +18,12 @@ import { baseUrl } from '../shared/baseUrl';
             {            
                     return(
                         <div key={dish.id} className="col-12 col-md-5 m-1">
+
+                        <FadeTransform
+                           in
+                           transformProps={{
+                             exitTransform: 'scale(0.5) translateY(-50%)'
+                                 }}>
                                 <Card>
                                     <CardImg width="100%" src={baseUrl+dish.image} alt={dish.name} />                                        
                                     <CardBody body className="ml-5">
@@ -24,6 +31,7 @@ import { baseUrl } from '../shared/baseUrl';
                                             <CardText>{dish.description}</CardText>                                           
                                     </CardBody>
                                 </Card>
+                             </FadeTransform>   
                         </div>
                     );//end return             
             }//end if   
