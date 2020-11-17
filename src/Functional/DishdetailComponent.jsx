@@ -4,7 +4,7 @@ import {Card,CardBody,CardText,CardImg,CardImgOverlay, CardTitle , Breadcrumb,Br
 import { Link } from 'react-router-dom';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import { Control, LocalForm, Errors } from 'react-redux-form';
-import { addComment } from './../redux/ActionCreators';
+//import { postComment } from './../redux/ActionCreators';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
@@ -82,10 +82,12 @@ import { baseUrl } from '../shared/baseUrl';
 
 
 
-    function RenderComments({comments , dish , addComment})
+    //function RenderComments({comments , dish , addComment})
+    function RenderComments({comments , dishId , postComment})
          {
             
-             console.log(comments)          
+             console.log(comments) 
+             console.log("DishID id"+dishId)         ;
            
 
              // if (comments != null) 
@@ -111,7 +113,7 @@ import { baseUrl } from '../shared/baseUrl';
                                     {list}
                                </Stagger>     
                             </ul>   
-                            <CommentForm dishId={dish} addComment={addComment} />                         
+                            <CommentForm dishId={dishId} postComment={postComment} />                         
                         </div>
                 )
             //}//end if            
@@ -167,23 +169,13 @@ import { baseUrl } from '../shared/baseUrl';
        </div>   
      <div className="row">
         <RenderDish dish={props.dish}/>
-        <RenderComments comments={props.comments} 
-           addComment={props.addComment}  dishId={props.dish.id}  />
-    </div> 
- </div>      
-
+        <RenderComments comments={props.comments}            
+           postComment={props.postComment}  dishId={props.dish.id}     />
+      </div> 
+       </div>    
      );//end return
-
-    }           
-
-    }//end DishDetail
-
-/*
-<RenderComments dish={props.dish} />
-    {RenderDish(dish)}   
-        {RenderComments(dish)}
-*/
-    //{props.dish.name}
+    }//end else          
+}//end DishDetail
 // Update  Update Props 
 // <RenderComments dish={props.dish} /> --> Passing parmaters in routes 
  
@@ -202,9 +194,10 @@ export class CommentForm extends Component {
 
         this.state = 
         {
-            isModalOpen: false
+            isModalOpen: false ,
+            dish : null 
         };
-
+        this.state.dish = props.dishId ;
         this.toggleModal  = this.toggleModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }//end constructor
@@ -217,9 +210,10 @@ export class CommentForm extends Component {
     handleSubmit(values) 
     {
         this.toggleModal();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        //this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.state.dish, values.rating, values.author, values.comment);
+        
     }//end handleSubmit()
-
 
     render() 
     {
@@ -230,7 +224,6 @@ export class CommentForm extends Component {
                     <span className="fa fa-pencil fa-lg"> Submit comment</span>
                 </Button>
              </div>   
-
                 <div className="row row-content"> 
 
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
@@ -271,16 +264,10 @@ export class CommentForm extends Component {
                                         Submit
                                     </Button>
 
-                                </LocalForm>
-
-                                
-
-
+                                </LocalForm>                               
                             </div>
                          </ModalBody>    
-
                  </Modal>       
-
                 </div>
 
           </div>
